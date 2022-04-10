@@ -8,10 +8,14 @@ class TwitterFetcher:
     def __init__(self, base_url):
         self.url = base_url
 
-    def get_tweet(self, keyword, retweet):
+    def make_url(self, keyword, retweet):
         url = self.url + "search/recent?query=" + keyword 
         if retweet == True :
             url = url + " -is:retweet"
+        return url
+
+    def get_tweet(self, keyword, retweet):
+        url = self.make_url(keyword, retweet)
         result = self.query(url)
 
     def query(self, url):
