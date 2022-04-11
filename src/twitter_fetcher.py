@@ -27,5 +27,20 @@ class TwitterFetcher:
 
     def export(self, data):
         print("Export to Google Cloud Storage")
+######################################################################
+    def make_url2(self, keyword):
+        url2 = self.url + "counts/recent?query=" + keyword
+        #action sur la granularité ?
+        return url2
 
+    def count_tweet(self, keyword):
+        url2 = self.make_url(keyword)
+        result = self.query(url2)
+
+    def query2(self, url2):
+        headers = {
+        "Authorization": "Bearer " + TwitterFetcher.TOKEN
+        }
+        response = requests.get(url2, headers=headers)
+        return response.json()
 

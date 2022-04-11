@@ -14,3 +14,10 @@ def test_make_url_without_retweet():
     expected_url = "https://api.twitter.com/2/tweets/search/recent?query=macron"
     assert url == expected_url
 
+def test_make_url_count():
+    BASE_URL = "https://api.twitter.com/2/tweets/"
+    fetcher = TwitterFetcher(BASE_URL)
+    url = fetcher.make_url2("macron")
+    expected_url = "https://api.twitter.com/2/tweets/counts/recent?query=macron"
+    assert url == expected_url
+
