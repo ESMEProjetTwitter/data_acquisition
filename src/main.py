@@ -6,8 +6,10 @@ BASE_URL = "https://api.twitter.com/2/tweets/"
 fetcher = TweetFetcher(BASE_URL)
 result = fetcher.get_tweet("macron",True)
 
-fetcher.export(result)
+fetcher.export(result,"macron")
 
-counter = TweetCounter(BASE_URL)
-result2 = counter.count_tweet("macron")
-counter.export(result2)
+# counter = TweetCounter(BASE_URL)
+# result2 = counter.count_tweet("macron")
+# counter.export(result2)
+
+

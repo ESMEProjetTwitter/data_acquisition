@@ -1,5 +1,7 @@
 import requests
 import json
+from google.cloud import storage
+from datetime import date
 
 class TweetFetcher:
    
@@ -17,6 +19,7 @@ class TweetFetcher:
     def get_tweet(self, keyword, retweet):
         url = self.make_url(keyword, retweet)
         result = self.query(url)
+        return result
 
     def query(self, url):
         headers = {
@@ -25,6 +28,22 @@ class TweetFetcher:
         response = requests.get(url, headers=headers)
         return response.json()
 
-    def export(self, data):
+    def make_filename(self,keyword):
+        today = date.today()
+        today = today.strftime("%Y-%m-%d")
+        html_name = "{}/{}/tweets.json".format(today,keyword)  #once per day on Gcloud -->date/keyword/tweets
+        return html_name
+
+    def export(self,data,keyword):
+        data_json = json.dumps(data, indent=4,ensure_ascii=False)
+        client = storage.Client()
+        bucket = client.get_bucket('tweets-project-esme') # bucket name -->unique name
+        filename = self.make_filename(keyword)
+        blob = bucket.blob("tweets/" + filename)
+        blob.upload_from_string(data_json)
         print("Export tweets to Google Cloud Storage")
+
+
+
+
 
