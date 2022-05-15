@@ -3,6 +3,7 @@ import json
 from google.cloud import storage
 from datetime import date
 
+
 class TweetFetcher:
    
     TOKEN = "AAAAAAAAAAAAAAAAAAAAACNWaQEAAAAAQaaBxfOjJCX1m3H%2BF0qrSGFIKPc%3DQxdEvIXQi90IT32aQ8JDcOmxgnp34idYC5H712BzQfybgyRv9r"
@@ -64,6 +65,13 @@ class TweetFetcher:
         blob = bucket.blob("tweets/" + filename)
         blob.upload_from_string(data_json)
         print("Export tweets to Google Cloud Storage")
+
+    def make_unicode(input): #to modify a str to unicode
+        if type(input) != "unicode":
+            input = input.decode('utf-8')
+            return input
+        else:
+            return input
 
 
 
