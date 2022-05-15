@@ -14,4 +14,3 @@ def test_make_filename():
     today = date.today().strftime("%Y-%m-%d")
     expected_filename = today + "/macron/tweets_count.json"
     assert filename == expected_filename
-
