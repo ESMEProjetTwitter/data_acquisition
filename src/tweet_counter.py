@@ -11,7 +11,7 @@ class TweetCounter:
         self.url = base_url
 
     def make_url(self, keyword):
-        url2 = self.url + "counts/recent?query=" + keyword + "&granularity=hour"
+        url2 = self.url + "counts/recent?query=" + keyword + "&granularity=day"
         #action sur la granularité ?
         return url2
 

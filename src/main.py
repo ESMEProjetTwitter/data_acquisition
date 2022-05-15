@@ -3,7 +3,7 @@ from tweet_counter import TweetCounter
 
 BASE_URL = "https://api.twitter.com/2/tweets/"
 
-keywords = ["macron"]
+keywords = ["macron", "zemmour", "le pen", "mélenchon"]
 
 fetcher = TweetFetcher(BASE_URL)
 counter = TweetCounter(BASE_URL)
