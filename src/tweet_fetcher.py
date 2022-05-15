@@ -66,12 +66,6 @@ class TweetFetcher:
         blob.upload_from_string(data_json)
         print("Export tweets to Google Cloud Storage")
 
-    def make_unicode(input): #to modify a str to unicode
-        if type(input) != "unicode":
-            input = input.decode('utf-8')
-            return input
-        else:
-            return input
 
 
 
