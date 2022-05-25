@@ -43,10 +43,11 @@ class TweetFetcher:
         all_tweets.append(response.json()["data"])
         next_token = response.json()['meta']['next_token']
         # Make the query for page 2 to 100 of the API
-        for page_num in range(1, 2):
+        for page_num in range(1, 10):
             if next_token is not None:
                 url_with_next_token = self.add_next_token(url, next_token)
                 response = requests.get(url_with_next_token, headers=headers)
+                next_token = response.json()['meta']['next_token']
                 all_tweets.append(response.json()["data"])
         return self.flatten(all_tweets)
 
@@ -58,15 +59,18 @@ class TweetFetcher:
 
     def export(self,data,keyword):
         data_json = json.dumps(data, indent=4,ensure_ascii=False)
-        print(data)
         client = storage.Client()
         bucket = client.get_bucket('tweets-project-esme') # bucket name -->unique name
         filename = self.make_filename(keyword)
         blob = bucket.blob("tweets/" + filename)
         blob.upload_from_string(data_json)
-        print("Export tweets to Google Cloud Storage")
 
-
-
-
-
+    @staticmethod
+    def count_duplicates(tweets):
+        counter = {}
+        for tweet in tweets:
+            if tweet["id"] not in list(counter.keys()):
+                counter[tweet["id"]] = 0
+            counter[tweet["id"]] = counter[tweet["id"]] + 1
+        unique_ids = [tweet["id"] for tweet in tweets]
+        return len(tweets) - len(list(set(unique_ids)))

@@ -35,7 +35,6 @@ class TweetCounter:
 
     def export(self, data, keyword):
         data_json = json.dumps(data, indent=4, ensure_ascii=False)
-        print(data)
         client = storage.Client()
         bucket = client.get_bucket('tweets-project-esme')  # bucket name -->unique name
         filename = self.make_filename(keyword)
