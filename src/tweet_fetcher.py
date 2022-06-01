@@ -6,7 +6,7 @@ from google.cloud import storage
 
 
 class TweetFetcher:
-    TOKEN = "AAAAAAAAAAAAAAAAAAAAACNWaQEAAAAAQaaBxfOjJCX1m3H%2BF0qrSGFIKPc%3DQxdEvIXQi90IT32aQ8JDcOmxgnp34idYC5H712BzQfybgyRv9r"
+    TOKEN = "to change"
 
     def __init__(self, base_url):
         self.url = base_url

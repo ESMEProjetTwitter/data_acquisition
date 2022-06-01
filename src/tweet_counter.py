@@ -5,7 +5,7 @@ from datetime import date
 
 class TweetCounter:
 
-    TOKEN = "AAAAAAAAAAAAAAAAAAAAACNWaQEAAAAAQaaBxfOjJCX1m3H%2BF0qrSGFIKPc%3DQxdEvIXQi90IT32aQ8JDcOmxgnp34idYC5H712BzQfybgyRv9r"
+    TOKEN = "to chage"
 
     def __init__(self, base_url):
         self.url = base_url
